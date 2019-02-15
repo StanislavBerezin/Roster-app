@@ -16,6 +16,11 @@ class AuthManager extends Component {
     registerModal: register
   };
 
+  insideModalToggle = () => {
+    this.props.toggleModal("registerModal");
+    this.props.toggleModal("loginModal");
+  };
+
   inputChangedHandler = (event, controlName, formIdentifer) => {
     const updatedControls = {
       ...this.state[formIdentifer],
@@ -29,7 +34,6 @@ class AuthManager extends Component {
         touched: true
       }
     };
-
     this.setState({ [formIdentifer]: updatedControls });
   };
 
@@ -52,6 +56,7 @@ class AuthManager extends Component {
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
         value={formElement.config.value}
+        label={formElement.config.label}
         invalid={!formElement.config.valid}
         shouldValidate={formElement.config.validation}
         touched={formElement.config.touched}
@@ -66,7 +71,11 @@ class AuthManager extends Component {
         <button onClick={() => this.props.toggleModal("loginModal")}>
           hey
         </button>
-        <Modal form={form} identifer={formIdentifier} />
+        <Modal
+          form={form}
+          identifer={formIdentifier}
+          insideToggle={this.insideModalToggle}
+        />
       </React.Fragment>
     );
   }

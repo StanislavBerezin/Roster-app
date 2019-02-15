@@ -94,42 +94,6 @@ import classes from "./Input.module.scss";
 
 // TO VALIDATE DATA
 
-// checkValidity ( value, rules ) {
-// without this it will check one by one, and even if all of them fail except the
-// last one, then it will be ok
-
-//     let isValid = true;
-//     if ( !rules ) {
-//         return true;
-//     }
-// if its empty
-//     if ( rules.required ) {
-// we check if its true for trim and if it was true before
-// kind of like chaining, so all rules have to pass
-//         isValid = value.trim() !== '' && isValid;
-//     }
-// if there is a min length
-//     if ( rules.minLength ) {
-//         isValid = value.length >= rules.minLength && isValid
-//     }
-
-//     if ( rules.maxLength ) {
-//         isValid = value.length <= rules.maxLength && isValid
-//     }
-
-//     if ( rules.isEmail ) {
-//         const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-//         isValid = pattern.test( value ) && isValid
-//     }
-
-//     if ( rules.isNumeric ) {
-//         const pattern = /^\d+$/;
-//         isValid = pattern.test( value ) && isValid
-//     }
-
-//     return isValid;
-// }
-
 const input = props => {
   let inputElement = null;
   //   in case there is an error
@@ -154,21 +118,17 @@ const input = props => {
         />
       );
       break;
-    case "select":
+    case "checkbox":
       inputElement = (
-        <select
-          className={inputClasses.join(" ")}
-          value={props.value}
-          onChange={props.changed}
-        >
-          {/* this is in case there are a few select boxes to be created */}
-          {props.elementConfig.options.map(option => (
-            //   value to retrieve it
-            <option key={option.value} value={option.value}>
-              {option.displayValue}
-            </option>
-          ))}
-        </select>
+        <React.Fragment>
+          <input
+            className={inputClasses.join(" ")}
+            // here we can assign html attibutes to it
+            {...props.elementConfig}
+            value={props.value}
+            onChange={props.changed}
+          />
+        </React.Fragment>
       );
       break;
     default:

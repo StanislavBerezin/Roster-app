@@ -13,6 +13,7 @@ export default {
     valid: false,
     touched: false
   },
+
   password: {
     elementType: "input",
     elementConfig: {
@@ -25,6 +26,16 @@ export default {
       required: true
     },
     valid: false,
+    touched: false
+  },
+
+  remember: {
+    elementType: "input",
+    elementConfig: {
+      type: "checkbox"
+    },
+    name: "Remember",
+    label: "Remember me",
     touched: false
   }
 };

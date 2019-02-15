@@ -8,7 +8,8 @@ const CustomModal = ({
   registerModal,
   toggleModal,
   form,
-  identifer
+  identifer,
+  insideToggle
 }) => {
   return (
     <React.Fragment>
@@ -21,6 +22,11 @@ const CustomModal = ({
       >
         <div>
           <form>{form}</form>
+
+          <button onClick={() => insideToggle()}>
+            {loginModal ? <p>Register</p> : <p>Login</p>}
+          </button>
+          <button>{loginModal ? <p>Sign in</p> : <p>Register</p>}</button>
         </div>
       </Modal>
     </React.Fragment>
