@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
 import MainPage from "./containers/mainPage/MainPage";
-import NavManager from "./containers/navManager/NavManager";
+
 import DashBoard from "./containers/dashBoard/DashBoard";
 import Nav from "./components/nav/Nav";
 import AuthManager from "./containers/authManager/AuthManager";

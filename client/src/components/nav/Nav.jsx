@@ -35,9 +35,7 @@ const Nav = ({ isAuthenticated, openModal }) => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.authReducer.token !== null,
-    isLogin: state.modalReducer.loginModal,
-    isRegister: state.modalReducer.registerModal
+    isAuthenticated: state.authReducer.token !== null
   };
 };
 

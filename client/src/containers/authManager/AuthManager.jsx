@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 //import styles from "./NavManager.module.scss";
-import Nav from "../../components/nav/Nav";
-import LoginModal from "../../components/modals/LoginModal";
-import RegisterModal from "../../components/modals/RegisterModal";
+
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions/index";
 import Input from "../../components/UI/Input/Input";
@@ -11,57 +9,12 @@ import Modal from "../../components/modals/Modal";
 
 import login from "./forms/login";
 import register from "./forms/register";
-
+import validation from "./validations/validation";
 class AuthManager extends Component {
   state = {
-    modalName: null,
     loginModal: login,
     registerModal: register
   };
-
-  checkValidity(value, rules) {
-    let isValid = true;
-    if (!rules) {
-      return true;
-    }
-
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    if (rules.isEmail) {
-      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = pattern.test(value) && isValid;
-    }
-
-    if (rules.isNumeric) {
-      const pattern = /^\d+$/;
-      isValid = pattern.test(value) && isValid;
-    }
-
-    return isValid;
-  }
-
-  componentDidUpdate() {
-    if (this.state.modalName !== null) {
-      return;
-    }
-    if (this.props) {
-      if (this.props.isLogin) {
-        console.log("is log");
-        this.setState({ modalName: "loginModal" });
-      } else if (this.props.isRegister)
-        this.setState({ modalName: "registerModal" });
-    }
-  }
 
   inputChangedHandler = (event, controlName, formIdentifer) => {
     const updatedControls = {
@@ -69,7 +22,7 @@ class AuthManager extends Component {
       [controlName]: {
         ...this.state[formIdentifer][controlName],
         value: event.target.value,
-        valid: this.checkValidity(
+        valid: validation.checkValidity(
           event.target.value,
           this.state[formIdentifer][controlName].validation
         ),
@@ -81,8 +34,10 @@ class AuthManager extends Component {
   };
 
   render() {
-    let formIdentifier = this.state.modalName;
-    console.log(this.props);
+    let formIdentifier = Object.keys(this.props).find(
+      key => this.props[key] === true
+    );
+
     const formElementsArray = [];
     for (let key in this.state[formIdentifier]) {
       formElementsArray.push({
@@ -101,7 +56,7 @@ class AuthManager extends Component {
         shouldValidate={formElement.config.validation}
         touched={formElement.config.touched}
         changed={event =>
-          this.inputChangedHandler(event, formElement.id, this.state.modalName)
+          this.inputChangedHandler(event, formElement.id, formIdentifier)
         }
       />
     ));
@@ -111,7 +66,7 @@ class AuthManager extends Component {
         <button onClick={() => this.props.toggleModal("loginModal")}>
           hey
         </button>
-        <Modal form={form} identifer={this.state.modalName} />
+        <Modal form={form} identifer={formIdentifier} />
       </React.Fragment>
     );
   }
@@ -121,8 +76,8 @@ const mapStateToProps = state => {
   return {
     // so that it becomes a boolean
     isAuthenticated: state.authReducer.token !== null,
-    isLogin: state.modalReducer.loginModal,
-    isRegister: state.modalReducer.registerModal
+    loginModal: state.modalReducer.loginModal,
+    registerModal: state.modalReducer.registerModal
   };
 };
 

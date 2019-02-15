@@ -3,18 +3,17 @@ import { connect } from "react-redux";
 import { toggleModal } from "../../redux/actions/index";
 
 import Modal from "react-awesome-modal";
-const CustomModal = ({ isLogin, isRegister, toggleModal, form, identifer }) => {
-  let defineModal = null;
-
-  if (isLogin) {
-    defineModal = isLogin;
-  } else {
-    defineModal = isRegister;
-  }
+const CustomModal = ({
+  loginModal,
+  registerModal,
+  toggleModal,
+  form,
+  identifer
+}) => {
   return (
     <React.Fragment>
       <Modal
-        visible={defineModal}
+        visible={loginModal || registerModal}
         width="400"
         height="300"
         effect="fadeInUp"
@@ -29,9 +28,8 @@ const CustomModal = ({ isLogin, isRegister, toggleModal, form, identifer }) => {
 };
 const mapStateToProps = state => {
   return {
-    isLogin: state.modalReducer.loginModal,
-    isRegister: state.modalReducer.registerModal,
-    modalName: state.modalReducer.modalName
+    loginModal: state.modalReducer.loginModal,
+    registerModal: state.modalReducer.registerModal
   };
 };
 
