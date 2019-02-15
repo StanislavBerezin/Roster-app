@@ -1,6 +1,4 @@
-export const SET_MOVIES = "SET_MOVIES";
-export const SET_INDIVIDUAL_PAGE = "SET_INDIVIDUAL_PAGE";
-export const SET_ERROR = "SET_ERROR";
+export const TOGGLE_MODAL = "TOGGLE_MODAL";
 
 export const AUTH_INIT = "AUTH_INIT";
 export const AUTH_FAIL = "AUTH_FAIL";

@@ -8,9 +8,10 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import authReducer from "./redux/reducers/authReducer";
-
+import modalReducer from "./redux/reducers/modalReducer";
 const rootReducer = combineReducers({
-  authReducer
+  authReducer,
+  modalReducer
 });
 
 //to check up on state

@@ -3,15 +3,19 @@ import { Route, Redirect, withRouter } from "react-router-dom";
 import MainPage from "./containers/mainPage/MainPage";
 import NavManager from "./containers/navManager/NavManager";
 import DashBoard from "./containers/dashBoard/DashBoard";
+import Nav from "./components/nav/Nav";
+import AuthManager from "./containers/authManager/AuthManager";
 import { connect } from "react-redux";
 import "./styles/imports.scss";
-
+import LoginModal from "./components/modals/LoginModal";
 class App extends Component {
   render() {
     return (
       <div>
-        {console.log(this.props.isAuthenticated)}
-        <NavManager />
+        <Nav />
+
+        <AuthManager />
+
         <Route exact path="/" component={MainPage} />
 
         {this.props.isAuthenticated ? (
