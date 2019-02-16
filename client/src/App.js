@@ -8,8 +8,22 @@ import AuthManager from "./containers/authManager/AuthManager";
 import { connect } from "react-redux";
 import "./styles/imports.scss";
 
+import Shifts from "./containers/dashBoard/shifts/Shifts";
+import Edit from "./containers/dashBoard/edit/Edit";
+
 class App extends Component {
   render() {
+    let dynamicRoutes = null;
+    if (this.props.isAuthenticated) {
+      dynamicRoutes = (
+        <React.Fragment>
+          <Route path={"/dashboard"} component={DashBoard} />
+        </React.Fragment>
+      );
+    } else {
+      dynamicRoutes = <Redirect to="/" />;
+    }
+
     return (
       <div>
         <Nav />
@@ -18,11 +32,7 @@ class App extends Component {
 
         <Route exact path="/" component={MainPage} />
 
-        {this.props.isAuthenticated ? (
-          <Route path="/dashboard" component={DashBoard} />
-        ) : (
-          <Redirect to="/" />
-        )}
+        {dynamicRoutes}
       </div>
     );
   }
