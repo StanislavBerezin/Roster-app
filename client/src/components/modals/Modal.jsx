@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { toggleModal } from "../../redux/actions/index";
-
+import style from "./style.module.scss";
 import Modal from "react-awesome-modal";
 const CustomModal = ({
   loginModal,
@@ -9,24 +9,26 @@ const CustomModal = ({
   toggleModal,
   form,
   identifer,
-  insideToggle
+  insideToggle,
+  submitForm,
+  disabled
 }) => {
   return (
     <React.Fragment>
       <Modal
         visible={loginModal || registerModal}
-        width="400"
-        height="300"
         effect="fadeInUp"
         onClickAway={() => toggleModal(identifer)}
       >
-        <div>
+        <div className={style.form}>
           <form>{form}</form>
 
           <button onClick={() => insideToggle()}>
             {loginModal ? <p>Register</p> : <p>Login</p>}
           </button>
-          <button>{loginModal ? <p>Sign in</p> : <p>Register</p>}</button>
+          <button disabled={!disabled} onClick={submitForm}>
+            {loginModal ? <p>Sign in</p> : <p>Register</p>}
+          </button>
         </div>
       </Modal>
     </React.Fragment>

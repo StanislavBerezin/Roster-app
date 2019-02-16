@@ -6,6 +6,7 @@ export default {
       placeholder: "Email address"
     },
     value: "",
+    label: "Email",
     validation: {
       isEmail: true,
       required: true
@@ -20,9 +21,11 @@ export default {
       type: "password",
       placeholder: "Password"
     },
+    label: "Password",
     value: "",
     validation: {
-      isEmail: true,
+      minLength: 5,
+      maxLength: 12,
       required: true
     },
     valid: false,
@@ -35,7 +38,9 @@ export default {
       type: "checkbox"
     },
     name: "Remember",
+    value: "Remember",
     label: "Remember me",
-    touched: false
+    touched: false,
+    valid: true
   }
 };

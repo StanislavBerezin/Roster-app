@@ -22,11 +22,6 @@ export default {
       isValid = pattern.test(value) && isValid;
     }
 
-    if (rules.isNumeric) {
-      const pattern = /^\d+$/;
-      isValid = pattern.test(value) && isValid;
-    }
-
     return isValid;
   }
 };

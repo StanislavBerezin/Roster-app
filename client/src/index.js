@@ -9,9 +9,11 @@ import { Provider } from "react-redux";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import authReducer from "./redux/reducers/authReducer";
 import modalReducer from "./redux/reducers/modalReducer";
+import orgReducer from "./redux/reducers/orgReducer";
 const rootReducer = combineReducers({
   authReducer,
-  modalReducer
+  modalReducer,
+  orgReducer
 });
 
 //to check up on state

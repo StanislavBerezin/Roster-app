@@ -1,6 +1,15 @@
 @import "../../styles/imports.scss";
 
-.Check {
-  background: $welcome;
+.nav {
+  background: #3498db;
   padding: 50px;
+
+  a {
+    border: 2px solid #9b59b6;
+    background: #9b59b6;
+    padding: 20px;
+    color: white;
+    margin: 10px;
+    border-radius: 20px;
+  }
 }

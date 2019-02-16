@@ -7,7 +7,7 @@ import Nav from "./components/nav/Nav";
 import AuthManager from "./containers/authManager/AuthManager";
 import { connect } from "react-redux";
 import "./styles/imports.scss";
-import LoginModal from "./components/modals/LoginModal";
+
 class App extends Component {
   render() {
     return (

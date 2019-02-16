@@ -118,19 +118,6 @@ const input = props => {
         />
       );
       break;
-    case "checkbox":
-      inputElement = (
-        <React.Fragment>
-          <input
-            className={inputClasses.join(" ")}
-            // here we can assign html attibutes to it
-            {...props.elementConfig}
-            value={props.value}
-            onChange={props.changed}
-          />
-        </React.Fragment>
-      );
-      break;
     default:
       inputElement = (
         <input

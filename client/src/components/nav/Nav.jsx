@@ -1,5 +1,5 @@
 import React from "react";
-import classess from "./Nav.module.scss";
+import styles from "./Nav.module.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { toggleModal } from "../../redux/actions/index";
@@ -25,7 +25,7 @@ const Nav = ({ isAuthenticated, openModal }) => {
   }
   return (
     <div>
-      <div className={classess.Check}>
+      <div className={styles.nav}>
         <Link to={"/"}>Home</Link>
         {navigationAuth}
       </div>

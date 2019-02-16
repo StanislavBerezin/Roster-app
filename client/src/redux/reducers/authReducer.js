@@ -4,8 +4,9 @@ import { updateObject } from "../utils";
 const initialState = {
   error: null,
   loading: false,
+  isInOrganisation: true,
   userId: null,
-  token: null,
+  token: "s",
   authRedirectPath: "/"
 };
 
