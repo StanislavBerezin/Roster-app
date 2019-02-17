@@ -5,6 +5,7 @@ import MainPage from "./containers/mainPage/MainPage";
 import DashBoard from "./containers/dashBoard/DashBoard";
 import Nav from "./components/nav/Nav";
 import AuthManager from "./containers/authManager/AuthManager";
+import Footer from "./components/footer/Footer";
 import { connect } from "react-redux";
 import "./styles/imports.scss";
 
@@ -26,10 +27,12 @@ class App extends Component {
         <Nav />
 
         <AuthManager />
+        <div className="mainScreen">
+          <Route exact path="/" component={MainPage} />
 
-        <Route exact path="/" component={MainPage} />
-
-        {dynamicRoutes}
+          {dynamicRoutes}
+        </div>
+        <Footer />
       </div>
     );
   }

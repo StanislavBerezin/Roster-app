@@ -81,6 +81,7 @@ class AuthManager extends Component {
       <Input
         key={formElement.id}
         elementType={formElement.config.elementType}
+        error={formElement.config.error}
         elementConfig={formElement.config.elementConfig}
         value={formElement.config.value}
         label={formElement.config.label}
@@ -100,7 +101,7 @@ class AuthManager extends Component {
           identifer={currentModal}
           insideToggle={this.insideModalToggle}
           submitForm={this.submitForm}
-          disabled={true}
+          disabled={bool}
         />
       </React.Fragment>
     );

@@ -10,23 +10,39 @@ const Nav = ({ isAuthenticated, openModal, logOut }) => {
   if (!isAuthenticated) {
     navigationAuth = (
       <React.Fragment>
-        <button onClick={() => openModal("loginModal")}> Login</button>
+        <button
+          className={styles.button}
+          onClick={() => openModal("loginModal")}
+        >
+          Login
+        </button>
 
-        <button onClick={() => openModal("registerModal")}> Register</button>
+        <button
+          className={styles.button}
+          onClick={() => openModal("registerModal")}
+        >
+          Register
+        </button>
       </React.Fragment>
     );
   } else {
     navigationAuth = (
       <React.Fragment>
-        <Link to={"/dashboard"}> Dashboard</Link>
-        <button onClick={() => logOut()}> logout</button>
+        <Link className={styles.button} to={"/dashboard"}>
+          Dashboard
+        </Link>
+        <button className={styles.button} onClick={() => logOut()}>
+          logout
+        </button>
       </React.Fragment>
     );
   }
   return (
     <div>
       <div className={styles.nav}>
-        <Link to={"/"}>Home</Link>
+        <Link className={styles.button} to={"/"}>
+          Home
+        </Link>
         {navigationAuth}
       </div>
     </div>

@@ -5,6 +5,7 @@ export default {
       type: "text",
       placeholder: "Username "
     },
+    error: "4-12 chars",
     value: "",
     label: "Username",
     validation: {
@@ -22,6 +23,7 @@ export default {
       placeholder: "Email address"
     },
     value: "",
+    error: "Wrong email",
     label: "Email",
     validation: {
       isEmail: true,
@@ -38,6 +40,7 @@ export default {
     },
     value: "",
     label: "Password",
+    error: "6-12 char",
     validation: {
       minLength: 6,
       maxLength: 12,
@@ -53,6 +56,7 @@ export default {
       placeholder: "Confirm Password"
     },
     value: "",
+    error: "6-12 char",
     label: "Confirm password",
     validation: {
       minLength: 6,

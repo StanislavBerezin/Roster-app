@@ -1,1 +1,43 @@
-$welcome: red;
+$button_color: #27ae60;
+$button_hover_color: #2ed573;
+$error: #ff4757;
+$input_color: #70a1ff;
+$input_hover: #1e90ff;
+.mainScreen {
+  height: 100vh;
+}
+
+.button {
+  text-decoration: none;
+  width: 100px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: $button_color;
+  color: #fff;
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  font-size: 16px;
+
+  outline: none;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.button:hover {
+  background: $button_hover_color;
+}
+
+button:disabled,
+button[disabled],
+button:disabled:hover,
+button[disabled]:hover {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}

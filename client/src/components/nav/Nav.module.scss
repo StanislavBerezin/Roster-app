@@ -3,13 +3,9 @@
 .nav {
   background: #3498db;
   padding: 50px;
+  display: flex;
 
-  a {
-    border: 2px solid #9b59b6;
-    background: #9b59b6;
+  .buttons {
     padding: 20px;
-    color: white;
-    margin: 10px;
-    border-radius: 20px;
   }
 }

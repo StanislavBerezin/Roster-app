@@ -1,0 +1,37 @@
+@import "../../../styles/imports.scss";
+//input
+.Invalid {
+  border: 2px solid $error;
+  transition: 1s ease-in-out;
+}
+.input {
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  transition: 1s ease-in-out;
+  border: 2px solid $input_color;
+  font-size: 18px;
+  outline: none;
+}
+.input:focus {
+  border: 2px solid $input_hover;
+}
+.ValidationError {
+  background: $error;
+
+  padding: 10px;
+  border-radius: 20px;
+  margin: 20px auto;
+}
+
+.Input {
+  display: flex;
+  justify-content: space-between;
+  transition: 1s;
+  label {
+    margin: auto;
+  }
+  input {
+    margin: 10px;
+  }
+}

@@ -1,0 +1,26 @@
+.coloured_image {
+  background: linear-gradient(to right, #5352ed, #34e7e4);
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  min-height: 300px;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.coloured_image_text {
+  display: flex;
+  text-align: left;
+  color: #fff;
+  transform: translate(0%, 70%);
+  word-spacing: 5px;
+  flex-direction: column;
+  font-weight: 300;
+  position: absolute;
+  z-index: 1;
+  top: 15%;
+  left: 15%;
+}
+.coloured_image_text h3 {
+  margin-top: 0px;
+}

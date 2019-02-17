@@ -6,6 +6,7 @@ export default {
       placeholder: "Email address"
     },
     value: "",
+    error: "Wrong email",
     label: "Email",
     validation: {
       isEmail: true,
@@ -23,6 +24,7 @@ export default {
     },
     label: "Password",
     value: "",
+    error: "5 to 12 char",
     validation: {
       minLength: 5,
       maxLength: 12,
