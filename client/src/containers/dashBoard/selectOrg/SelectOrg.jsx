@@ -6,20 +6,15 @@ import Edit from "../edit/Edit";
 import * as actions from "../../../redux/actions/index";
 import styles from "../DashBoard.module.scss";
 class SelectOrg extends Component {
-  state = {
-    orgs: [
-      { name: "Bob Tavern", rate: "30%", id: 12 },
-      { name: "Jos Qwerty", rate: "50%", id: 33 }
-    ]
-  };
   componentDidMount() {
     this.props.getAll();
   }
 
   render() {
     if (this.props.isOrg) return null;
+
     // console.log(this.state.creation.name.value);
-    let dynamicDisplay = this.state.orgs.map(e => {
+    let dynamicDisplay = this.props.allOrgs.map(e => {
       return (
         <div className={styles.eachOrg} key={e.id}>
           <p key={e.name}>{e.name}</p>
@@ -50,7 +45,8 @@ class SelectOrg extends Component {
 
 const mapStateToProps = state => {
   return {
-    isOrg: state.orgReducer.orgID !== null
+    isOrg: state.orgReducer.orgID !== null,
+    allOrgs: state.orgReducer.organisations
   };
 };
 

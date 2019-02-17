@@ -5,12 +5,11 @@ const initialState = {
   error: null,
   loading: false,
   isInOrganisation: false,
-  token: null,
-  authRedirectPath: "/"
+  token: null
 };
 
 const authStart = (state, action) => {
-  return updateObject(state, { error: "testgit", loading: true });
+  return updateObject(state, { error: null, loading: true });
 };
 
 const authSuccess = (state, action) => {
@@ -32,10 +31,6 @@ const authLogOut = (state, action) => {
   return updateObject(state, { token: null, loading: false });
 };
 
-const authRedirect = (state, action) => {
-  return updateObject(state, { authRedirectPath: action.path });
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_INIT:
@@ -49,9 +44,6 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.AUTH_LOGOUT:
       return authLogOut(state, action);
-
-    case actionTypes.AUTH_REDIRECT:
-      return authRedirect(state, action);
 
     default:
       return state;

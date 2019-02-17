@@ -14,7 +14,8 @@ const CustomModal = ({
   insideToggle,
   submitForm,
   disabled,
-  isAuth
+  isAuth,
+  error
 }) => {
   if (isAuth) return null;
   return (
@@ -27,6 +28,7 @@ const CustomModal = ({
         <div className={style.form}>
           <form>
             {form}
+            {error ? <p className={style.ValidationError}>{error}</p> : null}
             <Spinner />
           </form>
           <div className={style.buttons}>
@@ -50,7 +52,8 @@ const mapStateToProps = state => {
   return {
     isAuth: state.authReducer.token !== null,
     loginModal: state.modalReducer.loginModal,
-    registerModal: state.modalReducer.registerModal
+    registerModal: state.modalReducer.registerModal,
+    error: state.authReducer.error
   };
 };
 

@@ -8,9 +8,13 @@ import AuthManager from "./containers/authManager/AuthManager";
 import Footer from "./components/footer/Footer";
 import Spinner from "./components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
+import * as actions from "./redux/actions/index";
 import "./styles/imports.scss";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.checkAuth();
+  }
   render() {
     let dynamicRoutes = null;
     if (this.props.isAuthenticated) {
@@ -44,11 +48,15 @@ const mapStateToProps = state => {
     isAuthenticated: state.authReducer.token !== null
   };
 };
-
+const mapDispatchToProps = dispatch => {
+  return {
+    checkAuth: () => dispatch(actions.checkIfAuth())
+  };
+};
 // withRouter is used in this instance so that it actually redirects you home page if trying to access dashboard
 export default withRouter(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(App)
 );

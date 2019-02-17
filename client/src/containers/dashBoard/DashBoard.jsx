@@ -13,24 +13,30 @@ class DashBoard extends Component {
       { name: "Jos Qwerty", rate: "50%", id: 33 }
     ]
   };
-  test = () => {
-    this.props.leaveOrg();
-  };
 
   render() {
-    console.log(this.props.isOrg);
-
     let dynamicDisplay = null;
     if (this.props.isOrg) {
       dynamicDisplay = (
         <React.Fragment>
-          <Link to={`${this.props.match.url}/shifts/${this.state.orgs[0].id}`}>
+          <Link
+            className={styles.button_dashboard}
+            to={`${this.props.match.url}/shifts/${this.state.orgs[0].id}`}
+          >
             Shifts
           </Link>
-          <Link to={`${this.props.match.url}/edit/${this.state.orgs[0].id}`}>
+          <Link
+            className={styles.button_dashboard}
+            to={`${this.props.match.url}/edit/${this.state.orgs[0].id}`}
+          >
             Edit
           </Link>
-          <button onClick={this.test}>Leave</button>
+          <button
+            className={styles.button_dashboard}
+            onClick={() => this.props.leaveOrg()}
+          >
+            Leave
+          </button>
           <Route path={`/dashboard/shifts/:id`} component={Shifts} />
           <Route exact path={`/organisation/edit/:id`} component={Edit} />
         </React.Fragment>

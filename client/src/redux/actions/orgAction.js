@@ -52,6 +52,7 @@ export const createAndJoin = payload => {
     serverConnection
       .post("/organisations/create_join", payload)
       .then(response => {
+        console.log(response);
         dispatch(setOrg(response));
       })
       .catch(e => {

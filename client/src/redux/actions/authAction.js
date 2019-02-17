@@ -47,6 +47,17 @@ export const authRequest = (payload, whichAuth) => {
   };
 };
 
+export const checkIfAuth = () => {
+  return dispatch => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch(authLogOut());
+    } else {
+      dispatch(authSuccess(token));
+    }
+  };
+};
+
 export const logOut = () => {
   return dispatch => {
     dispatch(authInit());

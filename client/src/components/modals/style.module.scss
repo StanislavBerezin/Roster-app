@@ -22,4 +22,12 @@
   .buttons {
     margin: 0 auto;
   }
+  .ValidationError {
+    background: $error;
+
+    padding: 15px;
+    border-radius: 20px;
+    margin: 20px auto;
+    margin-right: 10px;
+  }
 }

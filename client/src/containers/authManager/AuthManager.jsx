@@ -93,7 +93,7 @@ class AuthManager extends Component {
         }
       />
     ));
-    if (this.props.isAuthenticated) return <Redirect to={"/dashboard"} />;
+
     return (
       <React.Fragment>
         <Modal
