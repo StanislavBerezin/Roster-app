@@ -8,13 +8,14 @@ export default {
     value: "",
     label: "Username",
     validation: {
-      isEmail: true,
+      minLength: 4,
+      maxLength: 12,
       required: true
     },
     valid: false,
     touched: false
   },
-  login: {
+  email: {
     elementType: "input",
     elementConfig: {
       type: "email",
@@ -45,7 +46,7 @@ export default {
     valid: false,
     touched: false
   },
-  passwordConfirm: {
+  passwordConfirmation: {
     elementType: "input",
     elementConfig: {
       type: "password",

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, Route, Redirect } from "react-router-dom";
 // import "./DashBoard.scss";
 import Edit from "../edit/Edit";
+import * as actions from "../../../redux/actions/index";
 
 class SelectOrg extends Component {
   state = {
@@ -11,6 +12,9 @@ class SelectOrg extends Component {
       { name: "Jos Qwerty", rate: "50%", id: 33 }
     ]
   };
+  componentDidMount() {
+    this.props.getAll();
+  }
 
   render() {
     if (this.props.isOrg) return null;
@@ -47,7 +51,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    getAll: () => dispatch(actions.requestAllOrg())
+  };
 };
 
 export default connect(

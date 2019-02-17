@@ -9,7 +9,7 @@ export default {
     label: "Organisation name"
   },
 
-  rate: {
+  hourlyRate: {
     elementType: "input",
     elementConfig: {
       type: "text",

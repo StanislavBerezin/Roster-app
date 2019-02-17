@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./Nav.module.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { toggleModal } from "../../redux/actions/index";
+import * as actions from "../../redux/actions/index";
 
-const Nav = ({ isAuthenticated, openModal }) => {
+const Nav = ({ isAuthenticated, openModal, logOut }) => {
   let navigationAuth = null;
 
   if (!isAuthenticated) {
@@ -19,7 +19,7 @@ const Nav = ({ isAuthenticated, openModal }) => {
     navigationAuth = (
       <React.Fragment>
         <Link to={"/dashboard"}> Dashboard</Link>
-        <button> logout</button>
+        <button onClick={() => logOut()}> logout</button>
       </React.Fragment>
     );
   }
@@ -41,7 +41,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openModal: payload => dispatch(toggleModal(payload))
+    openModal: payload => dispatch(actions.toggleModal(payload)),
+    logOut: () => dispatch(actions.logOut())
   };
 };
 

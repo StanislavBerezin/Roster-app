@@ -43,7 +43,7 @@ router.post("/join", (req, res) => {
 
 router.post("/create_join", (req, res) => {
   const { name, hourlyRate } = req.body;
-
+  console.log(name);
   if (req.user.organisation_id) {
     return res.status(400).json({ error: "You're already in an organisation" });
   }

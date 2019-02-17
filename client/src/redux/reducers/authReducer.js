@@ -1,12 +1,11 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../utils";
+import { updateObject, execute } from "../utils";
 
 const initialState = {
   error: null,
   loading: false,
-  isInOrganisation: true,
-  userId: null,
-  token: "s",
+  isInOrganisation: false,
+  token: null,
   authRedirectPath: "/"
 };
 
@@ -18,8 +17,7 @@ const authSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
     loadng: false,
-    token: action.token,
-    userId: action.userId
+    token: action.token
   });
 };
 
@@ -31,7 +29,7 @@ const authFailed = (state, action) => {
 };
 
 const authLogOut = (state, action) => {
-  return updateObject(state, { token: null, userId: null });
+  return updateObject(state, { token: null, loading: false });
 };
 
 const authRedirect = (state, action) => {

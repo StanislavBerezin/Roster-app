@@ -1,5 +1,5 @@
 export default {
-  login: {
+  email: {
     elementType: "input",
     elementConfig: {
       type: "email",

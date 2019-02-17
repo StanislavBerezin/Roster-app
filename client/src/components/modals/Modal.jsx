@@ -11,8 +11,10 @@ const CustomModal = ({
   identifer,
   insideToggle,
   submitForm,
-  disabled
+  disabled,
+  isAuth
 }) => {
+  if (isAuth) return null;
   return (
     <React.Fragment>
       <Modal
@@ -36,6 +38,7 @@ const CustomModal = ({
 };
 const mapStateToProps = state => {
   return {
+    isAuth: state.authReducer.token !== null,
     loginModal: state.modalReducer.loginModal,
     registerModal: state.modalReducer.registerModal
   };

@@ -12,6 +12,7 @@ router.post("/signup", (req, res) => {
     password: plaintextPassword,
     passwordConfirmation: plaintextPasswordConfirmation
   } = req.body;
+  console.log(req.body);
 
   if (plaintextPassword !== plaintextPasswordConfirmation) {
     return res
@@ -60,8 +61,10 @@ router.post("/login", (req, res) => {
   const { email, password: plaintextPassword } = req.body;
   const sessionId = uuidv4();
 
+  // error here
   DB.get("SELECT * FROM users WHERE email = ?", email)
     .then(user => {
+      console.log(user);
       if (!user) {
         throw {
           statusCode: 404,

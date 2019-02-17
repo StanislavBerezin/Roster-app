@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Input from "../../../components/UI/Input/Input";
 // import "./DashBoard.scss";
 import form from "./forms/createOrg";
+import * as actions from "../../../redux/actions/index";
 class Edit extends Component {
   state = {
     creation: form
@@ -16,11 +17,17 @@ class Edit extends Component {
         value: event.target.value
       }
     };
-    console.log(updatedControls);
+
     this.setState({ creation: updatedControls });
   };
   submitForm = () => {
-    console.log(this.state.creation);
+    let formData = {};
+
+    for (let elIdentifier in this.state.creation) {
+      formData[elIdentifier] = this.state.creation[elIdentifier].value;
+    }
+
+    this.props.createOrg(formData);
   };
 
   render() {
@@ -42,6 +49,7 @@ class Edit extends Component {
         changed={event => this.inputChangedHandler(event, formElement.id)}
       />
     ));
+
     return (
       <div className="mainSearchPage">
         {form}
@@ -51,4 +59,19 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+const mapStateToProps = state => {
+  return {
+    isOrg: state.orgReducer.orgID !== null
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createOrg: payload => dispatch(actions.createAndJoin(payload))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Edit);

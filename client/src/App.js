@@ -8,9 +8,6 @@ import AuthManager from "./containers/authManager/AuthManager";
 import { connect } from "react-redux";
 import "./styles/imports.scss";
 
-import Shifts from "./containers/dashBoard/shifts/Shifts";
-import Edit from "./containers/dashBoard/edit/Edit";
-
 class App extends Component {
   render() {
     let dynamicRoutes = null;

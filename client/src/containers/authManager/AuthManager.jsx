@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import styles from "./NavManager.module.scss";
-
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions/index";
 import Input from "../../components/UI/Input/Input";
@@ -13,13 +13,11 @@ import validation from "./validations/validation";
 
 class AuthManager extends Component {
   state = {
-    passedValidation: false,
     loginModal: login,
     registerModal: register
   };
 
   insideModalToggle = () => {
-    this.setState({ passedValidation: false });
     this.props.toggleModal("registerModal");
     this.props.toggleModal("loginModal");
   };
@@ -35,13 +33,13 @@ class AuthManager extends Component {
       formData[elIdentifier] = this.state[safeKeeper][elIdentifier].value;
     }
 
-    console.log(formData);
+    this.props.authRequest(formData, safeKeeper);
   };
   compareValidityOfForms = valid => {
     return valid === true;
   };
+
   inputChangedHandler = (event, controlName, formIdentifer) => {
-    let arr = [];
     const updatedControls = {
       ...this.state[formIdentifer],
       [controlName]: {
@@ -54,24 +52,28 @@ class AuthManager extends Component {
         touched: true
       }
     };
-    for (let each in this.state[formIdentifer]) {
-      arr.push(this.state[formIdentifer][each].valid);
-    }
-    let bool = arr.every(this.compareValidityOfForms);
-    console.log(bool);
-    this.setState({ [formIdentifer]: updatedControls, passedValidation: bool });
+
+    this.setState({ [formIdentifer]: updatedControls });
   };
 
   render() {
-    let formIdentifier = Object.keys(this.props).find(
-      key => this.props[key] === true
-    );
+    // to disable SIGN UP or SIGN IN button
+    let currentModal = null;
+    let arr = [];
+    if (this.props.loginModal) currentModal = "loginModal";
+    else currentModal = "registerModal";
+    for (let each in this.state[currentModal]) {
+      arr.push(this.state[currentModal][each].valid);
+    }
+    let bool = arr.every(this.compareValidityOfForms);
 
+    //converting all elements in the state into an array of object to loop through with map
+    //and eventually populate input form
     const formElementsArray = [];
-    for (let key in this.state[formIdentifier]) {
+    for (let key in this.state[currentModal]) {
       formElementsArray.push({
         id: key,
-        config: this.state[formIdentifier][key]
+        config: this.state[currentModal][key]
       });
     }
 
@@ -86,19 +88,19 @@ class AuthManager extends Component {
         shouldValidate={formElement.config.validation}
         touched={formElement.config.touched}
         changed={event =>
-          this.inputChangedHandler(event, formElement.id, formIdentifier)
+          this.inputChangedHandler(event, formElement.id, currentModal)
         }
       />
     ));
-
+    if (this.props.isAuthenticated) return <Redirect to={"/dashboard"} />;
     return (
       <React.Fragment>
         <Modal
           form={form}
-          identifer={formIdentifier}
+          identifer={currentModal}
           insideToggle={this.insideModalToggle}
           submitForm={this.submitForm}
-          disabled={this.state.passedValidation}
+          disabled={true}
         />
       </React.Fragment>
     );
@@ -116,8 +118,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkIfAuthenticated: () => dispatch(actions.logout),
-    toggleModal: payload => dispatch(actions.toggleModal(payload))
+    toggleModal: payload => dispatch(actions.toggleModal(payload)),
+    authRequest: (payload, whichModal) =>
+      dispatch(actions.authRequest(payload, whichModal))
   };
 };
 

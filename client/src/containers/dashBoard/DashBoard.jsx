@@ -5,12 +5,16 @@ import Shifts from "./shifts/Shifts";
 import Edit from "./edit/Edit";
 import "./DashBoard.scss";
 import SelectOrg from "./selectOrg/SelectOrg";
+import * as actions from "../../redux/actions";
 class DashBoard extends Component {
   state = {
     orgs: [
       { name: "Bob Tavern", rate: "30%", id: 12 },
       { name: "Jos Qwerty", rate: "50%", id: 33 }
     ]
+  };
+  test = () => {
+    this.props.leaveOrg();
   };
 
   render() {
@@ -26,11 +30,14 @@ class DashBoard extends Component {
           <Link to={`${this.props.match.url}/edit/${this.state.orgs[0].id}`}>
             Edit
           </Link>
+          <button onClick={this.test}>Leave</button>
           <Route path={`/dashboard/shifts/:id`} component={Shifts} />
           <Route exact path={`/organisation/edit/:id`} component={Edit} />
         </React.Fragment>
       );
     }
+
+    // one the strangest parts in the code :)
     let hack = this.props.location.pathname.toString().length;
     let smartSelectOrg = null;
     if (hack <= 10) {
@@ -57,7 +64,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    leaveOrg: () => dispatch(actions.requestLeaveOrg())
+  };
 };
 
 export default connect(
