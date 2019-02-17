@@ -6,6 +6,7 @@ import DashBoard from "./containers/dashBoard/DashBoard";
 import Nav from "./components/nav/Nav";
 import AuthManager from "./containers/authManager/AuthManager";
 import Footer from "./components/footer/Footer";
+import Spinner from "./components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
 import "./styles/imports.scss";
 
@@ -29,7 +30,7 @@ class App extends Component {
         <AuthManager />
         <div className="mainScreen">
           <Route exact path="/" component={MainPage} />
-
+          <Spinner />
           {dynamicRoutes}
         </div>
         <Footer />

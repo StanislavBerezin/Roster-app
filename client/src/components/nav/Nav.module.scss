@@ -1,8 +1,8 @@
 @import "../../styles/imports.scss";
 
 .nav {
-  background: #3498db;
-  padding: 50px;
+  background: linear-gradient(to right, $theme_color_1, $theme_color_2);
+  padding: 10px;
   display: flex;
 
   .buttons {

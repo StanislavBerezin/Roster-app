@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { toggleModal } from "../../redux/actions/index";
 import style from "./style.module.scss";
 import Modal from "react-awesome-modal";
+import Spinner from "../UI/Spinner/Spinner";
 
 const CustomModal = ({
   loginModal,
@@ -24,7 +25,10 @@ const CustomModal = ({
         onClickAway={() => toggleModal(identifer)}
       >
         <div className={style.form}>
-          <form>{form}</form>
+          <form>
+            {form}
+            <Spinner />
+          </form>
           <div className={style.buttons}>
             <button className={style.button} onClick={() => insideToggle()}>
               {loginModal ? <span>Register</span> : <span>Sign in</span>}

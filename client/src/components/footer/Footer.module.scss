@@ -1,6 +1,7 @@
-.footer {
-  background: linear-gradient(to left, #5352ed, #34e7e4);
+@import "../../styles/imports.scss";
 
+.footer {
+  background: linear-gradient(to right, $theme_color_1, $theme_color_2);
   display: flex;
   text-align: center;
   justify-content: center;

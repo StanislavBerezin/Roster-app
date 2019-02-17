@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Input from "../../../components/UI/Input/Input";
-// import "./DashBoard.scss";
+import styles from "../DashBoard.module.scss";
 import form from "./forms/createOrg";
 import * as actions from "../../../redux/actions/index";
 class Edit extends Component {
@@ -51,9 +51,11 @@ class Edit extends Component {
     ));
 
     return (
-      <div className="mainSearchPage">
+      <div className={styles.editForm}>
         {form}
-        <button onClick={this.submitForm}>Create</button>
+        <button className={styles.button_dashboard} onClick={this.submitForm}>
+          Create
+        </button>
       </div>
     );
   }

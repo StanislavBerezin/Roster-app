@@ -1,7 +1,7 @@
 @import "../../styles/imports.scss";
 //modal
 .form {
-  background: linear-gradient(to bottom, #5352ed, #34e7e4);
+  background: $form_color;
   margin: 0 auto;
   display: flex;
   justify-content: center;

@@ -39,7 +39,6 @@ export const requestLeaveOrg = () => {
     serverConnection
       .post("/organisations/leave")
       .then(response => {
-        console.log(response);
         dispatch(leaveOrg());
       })
       .catch(e => {
@@ -54,7 +53,6 @@ export const createAndJoin = payload => {
       .post("/organisations/create_join", payload)
       .then(response => {
         dispatch(setOrg(response));
-        console.log(response);
       })
       .catch(e => {
         console.log(e);

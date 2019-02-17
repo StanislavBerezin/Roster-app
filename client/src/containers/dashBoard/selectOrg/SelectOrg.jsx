@@ -4,7 +4,7 @@ import { Link, Route, Redirect } from "react-router-dom";
 // import "./DashBoard.scss";
 import Edit from "../edit/Edit";
 import * as actions from "../../../redux/actions/index";
-
+import styles from "../DashBoard.module.scss";
 class SelectOrg extends Component {
   state = {
     orgs: [
@@ -21,18 +21,22 @@ class SelectOrg extends Component {
     // console.log(this.state.creation.name.value);
     let dynamicDisplay = this.state.orgs.map(e => {
       return (
-        <React.Fragment key={e.id}>
+        <div className={styles.eachOrg} key={e.id}>
           <p key={e.name}>{e.name}</p>
-          <Link key={e.id} to={`/dashboard/edit/${e.id}`}>
+          <Link
+            key={e.id}
+            className={styles.button_dashboard}
+            to={`/dashboard/edit/${e.id}`}
+          >
             Edit
           </Link>
-          <button>Join</button>
-        </React.Fragment>
+          <button className={styles.button_dashboard}>Join</button>
+        </div>
       );
     });
 
     return (
-      <div className="mainSearchPage">
+      <div className={styles.selectOrg}>
         <h2>
           You need to select organisation <br />
         </h2>

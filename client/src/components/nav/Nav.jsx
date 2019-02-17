@@ -32,7 +32,7 @@ const Nav = ({ isAuthenticated, openModal, logOut }) => {
           Dashboard
         </Link>
         <button className={styles.button} onClick={() => logOut()}>
-          logout
+          Logout
         </button>
       </React.Fragment>
     );

@@ -1,5 +1,6 @@
+@import "../../styles/imports.scss";
 .coloured_image {
-  background: linear-gradient(to right, #5352ed, #34e7e4);
+  background: linear-gradient(to right, $theme_color_1, $theme_color_2);
   background-size: cover;
   background-position: center;
   height: 70vh;
@@ -15,11 +16,15 @@
   transform: translate(0%, 70%);
   word-spacing: 5px;
   flex-direction: column;
-  font-weight: 300;
+
   position: absolute;
   z-index: 1;
   top: 15%;
   left: 15%;
+  h1,
+  h3 {
+    font-weight: 300;
+  }
 }
 .coloured_image_text h3 {
   margin-top: 0px;

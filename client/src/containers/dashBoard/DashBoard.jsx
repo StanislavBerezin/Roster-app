@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link, Route, Redirect } from "react-router-dom";
 import Shifts from "./shifts/Shifts";
 import Edit from "./edit/Edit";
-import "./DashBoard.scss";
+import styles from "./DashBoard.module.scss";
 import SelectOrg from "./selectOrg/SelectOrg";
 import * as actions from "../../redux/actions";
 class DashBoard extends Component {
@@ -43,7 +43,7 @@ class DashBoard extends Component {
     if (hack <= 10) {
       smartSelectOrg = <SelectOrg />;
     }
-    console.log(hack);
+
     return (
       <div className="mainSearchPage">
         <h1>DashBoard</h1>
