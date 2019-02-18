@@ -14,6 +14,11 @@ class DashBoard extends Component {
     ]
   };
 
+  Redirect = () => {
+    this.props.leaveOrg();
+    this.props.history.push("/dashboard");
+  };
+
   render() {
     let dynamicDisplay = null;
     if (this.props.isOrg) {
@@ -33,7 +38,7 @@ class DashBoard extends Component {
           </Link>
           <button
             className={styles.button_dashboard}
-            onClick={() => this.props.leaveOrg()}
+            onClick={() => this.Redirect()}
           >
             Leave
           </button>

@@ -22,10 +22,16 @@ class SelectOrg extends Component {
             key={e.id}
             className={styles.button_dashboard}
             to={`/dashboard/edit/${e.id}`}
+            asd="WOW"
           >
             Edit
           </Link>
-          <button className={styles.button_dashboard}>Join</button>
+          <button
+            onClick={() => this.props.joinOrg(e.id)}
+            className={styles.button_dashboard}
+          >
+            Join
+          </button>
         </div>
       );
     });
@@ -36,8 +42,8 @@ class SelectOrg extends Component {
           You need to select organisation <br />
         </h2>
         {dynamicDisplay}
-        <h2>Or create</h2>
-        <Edit />
+
+        <Edit isSelection={true} />
       </div>
     );
   }
@@ -52,7 +58,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAll: () => dispatch(actions.requestAllOrg())
+    getAll: () => dispatch(actions.requestAllOrg()),
+    joinOrg: payload => dispatch(actions.requestJoinOrg(payload))
   };
 };
 

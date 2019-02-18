@@ -20,14 +20,16 @@ class Edit extends Component {
 
     this.setState({ creation: updatedControls });
   };
-  submitForm = () => {
+  submitForm = identifer => {
     let formData = {};
 
     for (let elIdentifier in this.state.creation) {
       formData[elIdentifier] = this.state.creation[elIdentifier].value;
     }
-
-    this.props.createOrg(formData);
+    if (identifer === "edit") {
+      formData.id = this.props.orgID;
+      this.props.editOrg(formData);
+    } else if (identifer === "create") this.props.createOrg(formData);
   };
 
   render() {
@@ -49,27 +51,54 @@ class Edit extends Component {
         changed={event => this.inputChangedHandler(event, formElement.id)}
       />
     ));
-
-    return (
-      <div className={styles.editForm}>
-        {form}
-        <button className={styles.button_dashboard} onClick={this.submitForm}>
-          Create
-        </button>
-      </div>
-    );
+    let welcomeMessage = null;
+    console.log(this.props);
+    if (this.props.isOrg || this.props.match) {
+      welcomeMessage = (
+        <React.Fragment>
+          <h2>{this.props.name}</h2>
+          <p>Hourly rate: {this.props.hourlyRate}</p>
+          <p> Edit below</p>
+          {form}
+          <button
+            className={styles.button_dashboard}
+            onClick={() => this.submitForm("edit")}
+          >
+            Edit
+          </button>
+        </React.Fragment>
+      );
+    } else {
+      welcomeMessage = (
+        <React.Fragment>
+          <h2>Or create and join</h2>
+          {form}
+          <button
+            className={styles.button_dashboard}
+            onClick={() => this.submitForm("create")}
+          >
+            Create
+          </button>
+        </React.Fragment>
+      );
+    }
+    return <div className={styles.editForm}>{welcomeMessage}</div>;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    isOrg: state.orgReducer.orgID !== null
+    isOrg: state.orgReducer.orgID !== null,
+    orgID: state.orgReducer.orgID,
+    name: state.orgReducer.name,
+    hourlyRate: state.orgReducer.hourlyRate
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    createOrg: payload => dispatch(actions.createAndJoin(payload))
+    createOrg: payload => dispatch(actions.createAndJoin(payload)),
+    editOrg: payload => dispatch(actions.requestEditOrg(payload))
   };
 };
 

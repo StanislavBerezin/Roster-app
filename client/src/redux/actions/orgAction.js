@@ -5,7 +5,7 @@ import * as actionTypes from "./actionTypes";
 // these are used in async functionality
 export const setOrg = payload => {
   return {
-    type: actionTypes.CREATE_ORG,
+    type: actionTypes.SET_ORG,
     payload
   };
 };
@@ -21,12 +21,18 @@ export const getAllOrg = organisations => {
   };
 };
 
+export const joinOrg = payload => {
+  return {
+    type: actionTypes.JOIN_ORG,
+    payload
+  };
+};
+
 export const requestAllOrg = () => {
   return dispatch => {
     serverConnection
       .get("/organisations/")
       .then(response => {
-        console.log(response);
         dispatch(getAllOrg(response.data));
       })
       .catch(e => {
@@ -47,6 +53,32 @@ export const requestLeaveOrg = () => {
   };
 };
 
+export const requestJoinOrg = payload => {
+  return dispatch => {
+    serverConnection
+      .post(`/organisations/join`, { organisationId: payload })
+      .then(response => {
+        dispatch(joinOrg(response));
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+};
+
+export const requestEditOrg = payload => {
+  return dispatch => {
+    serverConnection
+      .put(`/organisations/${payload.id}`, payload)
+      .then(response => {
+        console.log(payload);
+        dispatch(setOrg(payload));
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+};
 export const createAndJoin = payload => {
   return dispatch => {
     serverConnection
