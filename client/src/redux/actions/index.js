@@ -5,5 +5,6 @@ export {
   createAndJoin,
   requestLeaveOrg,
   requestJoinOrg,
-  requestEditOrg
+  requestEditOrg,
+  checkUserOrg
 } from "./orgAction";

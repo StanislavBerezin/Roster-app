@@ -10,6 +10,7 @@ import Spinner from "./components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
 import * as actions from "./redux/actions/index";
 import "./styles/imports.scss";
+import { checkUserOrg } from "./redux/actions/orgAction";
 
 class App extends Component {
   componentDidMount() {
@@ -50,7 +51,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    checkAuth: () => dispatch(actions.checkIfAuth())
+    checkAuth: () => dispatch(actions.checkIfAuth()),
+    checkUserOrg: () => dispatch(actions.checkUserOrg())
   };
 };
 // withRouter is used in this instance so that it actually redirects you home page if trying to access dashboard

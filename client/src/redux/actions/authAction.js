@@ -1,5 +1,5 @@
 import serverConnection from "../../axios/connection";
-
+import { checkUserOrg } from "./index";
 import * as actionTypes from "./actionTypes";
 
 // these are used in async functionality
@@ -54,6 +54,8 @@ export const checkIfAuth = () => {
       dispatch(authLogOut());
     } else {
       dispatch(authSuccess(token));
+      console.log(checkUserOrg());
+      dispatch(checkUserOrg());
     }
   };
 };

@@ -41,6 +41,18 @@ router.post("/join", (req, res) => {
   );
 });
 
+router.get("/get_org", (req, res) => {
+  const organisationId = req.user.organisation_id;
+  DB.get("SELECT * FROM organisations WHERE id = ?", organisationId)
+    .then(org => {
+      console.log(org);
+      res.send(org);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
+
 router.post("/create_join", (req, res) => {
   const { name, hourlyRate } = req.body;
   console.log(name);

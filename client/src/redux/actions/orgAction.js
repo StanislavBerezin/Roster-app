@@ -79,13 +79,26 @@ export const requestEditOrg = payload => {
       });
   };
 };
+
+export const checkUserOrg = () => {
+  return dispatch => {
+    serverConnection
+      .get("/organisations/get_org")
+      .then(response => {
+        dispatch(setOrg(response.data));
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+};
 export const createAndJoin = payload => {
   return dispatch => {
     serverConnection
       .post("/organisations/create_join", payload)
       .then(response => {
         console.log(response);
-        dispatch(setOrg(response));
+        dispatch(setOrg(response.data));
       })
       .catch(e => {
         console.log(e);

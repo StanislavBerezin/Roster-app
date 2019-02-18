@@ -29,19 +29,11 @@ const leaveOrg = (state, action) => {
 };
 
 const setOrg = (state, action) => {
-  if (action.payload.name) {
-    return updateObject(state, {
-      name: action.payload.name,
-      hourlyRate: action.payload.hourlyRate,
-      orgID: action.payload.id
-    });
-  } else {
-    return updateObject(state, {
-      name: action.payload.data.name,
-      hourlyRate: action.payload.data.hourlyRate,
-      orgID: action.payload.data.id
-    });
-  }
+  return updateObject(state, {
+    name: action.payload.name,
+    hourlyRate: action.payload.hourlyRate,
+    orgID: action.payload.id
+  });
 };
 
 const reducer = (state = initialState, action) => {

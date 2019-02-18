@@ -18,6 +18,7 @@ const sessionMiddleware = (req, res, next) => {
     }
 
     req.user = user;
+
     next();
   });
 };
