@@ -1,5 +1,9 @@
 @import "../../styles/imports.scss";
 
+.mainDash {
+  display: inline-flex;
+  flex-direction: column;
+}
 $border_color: #95a5a6;
 .eachOrg {
   display: flex;

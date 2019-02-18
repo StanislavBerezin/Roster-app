@@ -52,7 +52,9 @@ class Edit extends Component {
       />
     ));
     let welcomeMessage = null;
+
     console.log(this.props);
+
     if (this.props.isOrg || this.props.match) {
       welcomeMessage = (
         <React.Fragment>

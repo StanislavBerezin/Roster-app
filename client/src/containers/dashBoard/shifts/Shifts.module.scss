@@ -1,18 +1,52 @@
 @import "../../../styles/imports.scss";
-table {
+tbody {
+  width: auto;
   display: flex;
-  width: 100%;
+  overflow-x: auto;
+  .input {
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    outline: none;
+    transition: 1s ease-in-out;
+    border: 2px solid $input_color;
+    font-size: 13px;
+    outline: none;
+  }
+  .input:focus {
+    border: 2px solid $input_hover;
+  }
+  .Input {
+    display: flex;
+    justify-content: space-between;
+    transition: 1s;
+    label {
+      margin: auto;
+    }
+    input {
+      margin: 10px;
+    }
+  }
+  .button_dashboard {
+    margin: 0 auto;
+  }
+}
+table {
   justify-content: center;
   border-collapse: collapse;
+  display: flex;
+  justify-content: center;
 
-  th {
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-  }
+  margin: 0 auto;
+  th,
   td {
     padding: 20px;
     border-bottom: 1px solid #ddd;
+    text-align: center;
+    display: flex;
+    justify-content: center;
   }
+
   tr {
     transition: 1s ease-in-out;
   }
@@ -28,4 +62,11 @@ table {
   display: inline-flex;
   justify-content: center;
   flex-direction: column;
+}
+.edit {
+  border: 2px solid red;
+  display: inline-flex;
+  input {
+    width: 2200px;
+  }
 }

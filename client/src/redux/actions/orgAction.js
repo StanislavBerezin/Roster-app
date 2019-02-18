@@ -72,6 +72,7 @@ export const requestEditOrg = payload => {
       .put(`/organisations/${payload.id}`, payload)
       .then(response => {
         console.log(payload);
+
         dispatch(setOrg(payload));
       })
       .catch(e => {

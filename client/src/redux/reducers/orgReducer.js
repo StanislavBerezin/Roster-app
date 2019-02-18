@@ -33,9 +33,16 @@ const leaveOrg = (state, action) => {
 };
 
 const setOrg = (state, action) => {
+  let fix = null;
+
+  //time is of the essence, otherwise would do a proper
+  if (action.payload.hourlyRate) fix = "hourlyRate";
+  if (action.payload.hourly_rate) fix = "hourly_rate";
+
+  console.log(action.payload);
   return updateObject(state, {
     name: action.payload.name,
-    hourlyRate: action.payload.hourlyRate,
+    hourlyRate: action.payload[fix],
     orgID: action.payload.id
   });
 };

@@ -45,3 +45,17 @@ export const applyForShift = payload => {
       });
   };
 };
+
+export const updateShift = payload => {
+  return dispatch => {
+    serverConnection
+      .put(`/shifts/${payload.id}`, payload)
+      .then(response => {
+        console.log(response);
+        dispatch(getShifts());
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+};

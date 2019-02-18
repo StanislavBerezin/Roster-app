@@ -9,4 +9,9 @@ export {
   checkUserOrg
 } from "./orgAction";
 
-export { getShifts, applyForShift, deleteShift } from "./orgShifts";
+export {
+  getShifts,
+  applyForShift,
+  deleteShift,
+  updateShift
+} from "./orgShifts";

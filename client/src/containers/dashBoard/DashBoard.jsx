@@ -7,13 +7,6 @@ import styles from "./DashBoard.module.scss";
 import SelectOrg from "./selectOrg/SelectOrg";
 import * as actions from "../../redux/actions";
 class DashBoard extends Component {
-  state = {
-    orgs: [
-      { name: "Bob Tavern", rate: "30%", id: 12 },
-      { name: "Jos Qwerty", rate: "50%", id: 33 }
-    ]
-  };
-
   Redirect = () => {
     this.props.leaveOrg();
     this.props.history.push("/dashboard");
@@ -23,16 +16,16 @@ class DashBoard extends Component {
     let dynamicDisplay = null;
     if (this.props.isOrg) {
       dynamicDisplay = (
-        <React.Fragment>
+        <div className={styles.links}>
           <Link
             className={styles.button_dashboard}
-            to={`${this.props.match.url}/shifts/${this.state.orgs[0].id}`}
+            to={`${this.props.match.url}/shifts/${this.props.orgID}`}
           >
             Shifts
           </Link>
           <Link
             className={styles.button_dashboard}
-            to={`${this.props.match.url}/edit/${this.state.orgs[0].id}`}
+            to={`${this.props.match.url}/edit/${this.props.orgID}`}
           >
             Edit
           </Link>
@@ -44,7 +37,7 @@ class DashBoard extends Component {
           </button>
           <Route path={`/dashboard/shifts/:id`} component={Shifts} />
           <Route exact path={`/organisation/edit/:id`} component={Edit} />
-        </React.Fragment>
+        </div>
       );
     }
 
@@ -56,7 +49,7 @@ class DashBoard extends Component {
     }
 
     return (
-      <div className="mainSearchPage">
+      <div className={styles.mainDash}>
         <h1>DashBoard</h1>
         {dynamicDisplay}
         {smartSelectOrg}
@@ -70,7 +63,8 @@ const mapStateToProps = state => {
   return {
     // so that it becomes a boolean
     isAuthenticated: state.authReducer.token !== null,
-    isOrg: state.orgReducer.orgID !== null
+    isOrg: state.orgReducer.orgID !== null,
+    orgID: state.orgReducer.orgID
   };
 };
 

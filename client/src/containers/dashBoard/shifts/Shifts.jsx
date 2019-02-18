@@ -26,7 +26,7 @@ class Shifts extends Component {
     this.props.getShifts();
   };
 
-  inputChangedHandler = (event, controlName, formIdentifer) => {
+  inputChangedHandler = (event, controlName) => {
     const updatedControls = {
       ...this.state.form,
       [controlName]: {
