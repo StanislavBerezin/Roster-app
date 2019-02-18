@@ -37,7 +37,9 @@ router.get("/", (req, res) => {
         })
       )
     )
-    .then(shifts => res.json(shifts))
+    .then(shifts => {
+      res.json(shifts);
+    })
     .catch(err => {
       if (err && err.statusCode) {
         return res.status(err.statusCode).json({ error: err.error });
@@ -50,9 +52,9 @@ router.post("/", (req, res) => {
   if (!req.user.organisation_id) {
     return res.status(401).json({ error: "You're not in an organisation" });
   }
-
-  const { userId, start, finish, breakLength } = req.body;
-
+  const userId = req.user.id;
+  const { start, finish, breakLength } = req.body;
+  console.log(userId, req.body);
   DB.get(
     "SELECT * FROM users WHERE id = ? AND organisation_id = ?",
     userId,
@@ -129,7 +131,7 @@ router.delete("/:id", (req, res) => {
   if (!req.user.organisation_id) {
     return res.status(401).json({ error: "You're not in an organisation" });
   }
-
+  console.log(req.params);
   DB.get(
     "SELECT shifts.* FROM shifts INNER JOIN users ON shifts.user_id = users.id WHERE users.organisation_id = ? AND shifts.id = ?",
     req.user.organisation_id,

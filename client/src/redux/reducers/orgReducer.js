@@ -5,9 +5,13 @@ const initialState = {
   orgID: null,
   name: String,
   hourlyRate: Number,
-  organisations: []
+  organisations: [],
+  shifts: []
 };
 
+const setShifts = (state, action) => {
+  return updateObject(state, { shifts: action.payload });
+};
 const joinOrg = (state, action) => {
   return updateObject(state, {
     orgID: action.payload.data.id,
@@ -46,6 +50,8 @@ const reducer = (state = initialState, action) => {
       return setOrg(state, action);
     case actionTypes.LEAVE_ORG:
       return leaveOrg(state, action);
+    case actionTypes.SET_SHIFTS:
+      return setShifts(state, action);
     default:
       return state;
   }

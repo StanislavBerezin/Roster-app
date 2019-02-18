@@ -41,15 +41,19 @@ router.post("/join", (req, res) => {
   );
 });
 
+//new route if user is authenticated then we need to know in what organisation he is in
+//could have stored all in localstorage but security concercns prevailed
 router.get("/get_org", (req, res) => {
   const organisationId = req.user.organisation_id;
   DB.get("SELECT * FROM organisations WHERE id = ?", organisationId)
     .then(org => {
-      console.log(org);
       res.send(org);
     })
-    .catch(e => {
-      console.log(e);
+    .catch(err => {
+      if (err && err.statusCode) {
+        return res.status(err.statusCode).json({ error: err.error });
+      }
+      throw err;
     });
 });
 

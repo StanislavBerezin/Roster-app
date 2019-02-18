@@ -28,7 +28,7 @@
 }
 .button_dashboard {
   text-decoration: none;
-  width: 100px;
+  width: auto;
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
@@ -46,7 +46,26 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.button_danger {
+  text-decoration: none;
+  width: auto;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: $error;
+  color: #fff;
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  font-size: 16px;
 
+  outline: none;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .button_dashboard:hover {
   background: $button_dashboard_hover;
 }

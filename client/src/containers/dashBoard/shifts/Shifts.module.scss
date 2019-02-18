@@ -1,0 +1,31 @@
+@import "../../../styles/imports.scss";
+table {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border-collapse: collapse;
+
+  th {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  td {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  tr {
+    transition: 1s ease-in-out;
+  }
+
+  tr:hover:not(:first-child) {
+    background: #ecf0f1;
+    cursor: pointer;
+  }
+}
+
+.form {
+  margin-top: 40px;
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+}

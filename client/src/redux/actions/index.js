@@ -8,3 +8,5 @@ export {
   requestEditOrg,
   checkUserOrg
 } from "./orgAction";
+
+export { getShifts, applyForShift, deleteShift } from "./orgShifts";

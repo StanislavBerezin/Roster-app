@@ -10,3 +10,5 @@ export const GET_ALL_ORG = "GET_ALL_ORG";
 export const LEAVE_ORG = "LEAVE_ORG";
 export const JOIN_ORG = "JOIN_ORG";
 export const SET_ORG = "SET_ORG";
+
+export const SET_SHIFTS = "SET_SHIFTS";
