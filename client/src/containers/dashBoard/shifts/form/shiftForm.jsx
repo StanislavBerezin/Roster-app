@@ -23,7 +23,7 @@ export default {
     elementType: "input",
     elementConfig: {
       type: "text",
-      placeholder: "Email address"
+      placeholder: "Break length"
     },
     value: "",
     error: "Too long ¯\\_(ツ)_/¯ ",
