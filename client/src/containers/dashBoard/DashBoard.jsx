@@ -36,23 +36,16 @@ class DashBoard extends Component {
             Leave
           </button>
           <Route path={`/dashboard/shifts/:id`} component={Shifts} />
-          <Route exact path={`/organisation/edit/:id`} component={Edit} />
         </div>
       );
-    }
-
-    // one the strangest parts in the code :)
-    let hack = this.props.location.pathname.toString().length;
-    let smartSelectOrg = null;
-    if (hack <= 10) {
-      smartSelectOrg = <SelectOrg />;
+    } else {
+      dynamicDisplay = <SelectOrg />;
     }
 
     return (
       <div className={styles.mainDash}>
         <h1>DashBoard</h1>
         {dynamicDisplay}
-        {smartSelectOrg}
         <Route path={`/dashboard/edit/:id`} component={Edit} />
       </div>
     );

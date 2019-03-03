@@ -86,7 +86,14 @@ export const checkUserOrg = () => {
     serverConnection
       .get("/organisations/get_org")
       .then(response => {
-        dispatch(setOrg(response.data));
+        console.log("here");
+        if (response.data === "") {
+          console.log("no response data, so user is not in org");
+        } else {
+          console.log("there is a response, so user is in org");
+
+          dispatch(setOrg(response.data));
+        }
       })
       .catch(e => {
         console.log(e);

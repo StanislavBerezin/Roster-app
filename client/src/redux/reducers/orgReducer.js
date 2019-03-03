@@ -28,7 +28,8 @@ const leaveOrg = (state, action) => {
   return updateObject(state, {
     name: String,
     hourlyRate: Number,
-    orgID: null
+    orgID: null,
+    shifts: []
   });
 };
 

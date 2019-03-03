@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Route, Redirect } from "react-router-dom";
+import { Link, Route, Redirect, withRouter } from "react-router-dom";
 // import "./DashBoard.scss";
 import Edit from "../edit/Edit";
 import * as actions from "../../../redux/actions/index";
@@ -11,21 +11,17 @@ class SelectOrg extends Component {
   }
 
   render() {
-    if (this.props.isOrg) return null;
+    if (this.props.isOrg) {
+      console.log(this.props.isOrg);
+      return null;
+    }
 
     // console.log(this.state.creation.name.value);
     let dynamicDisplay = this.props.allOrgs.map(e => {
       return (
         <div className={styles.eachOrg} key={e.id}>
           <p key={e.name}>{e.name}</p>
-          <Link
-            key={e.id}
-            className={styles.button_dashboard}
-            to={`/dashboard/edit/${e.id}`}
-            asd="WOW"
-          >
-            Edit
-          </Link>
+
           <button
             onClick={() => this.props.joinOrg(e.id)}
             className={styles.button_dashboard}
@@ -42,7 +38,6 @@ class SelectOrg extends Component {
           You need to select organisation <br />
         </h2>
         {dynamicDisplay}
-
         <Edit isSelection={true} />
       </div>
     );
@@ -63,7 +58,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SelectOrg);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SelectOrg)
+);
